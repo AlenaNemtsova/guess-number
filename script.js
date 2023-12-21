@@ -2,6 +2,10 @@
 
 //"Загадывание случайного числа от 1 до 100"
 
+const isNumber = function (number) {
+    return !isNaN(parseFloat(number)) && isFinite(number);
+}
+
 function guessNumber(num) {
     let count = 10;
 
@@ -17,17 +21,18 @@ function guessNumber(num) {
             return;
         }
 
-        if (isNaN(inputNum) || inputNum.trim() === '') {
+        if (!isNumber(inputNum)) {
             alert("Введи число!");
             compareNum();
         }
+
         if (inputNum > num) {
             alert("Загаданное число меньше");
             count--;
             compareNum();
         }
 
-        if (inputNum < num) {
+        if (isNumber(inputNum) && inputNum < num) {
             alert("Загаданное число больше");
             count--;
             compareNum();
